@@ -1,94 +1,146 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Header = () => {
-  const [timeLeft, setTimeLeft] = useState(getTimeRemaining());
+const CountdownCard = () => {
+  const [countdown, setCountdown] = useState({
+    days: 542,
+    hours: 12,
+    minutes: 46,
+    seconds: 40,
+  });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft(getTimeRemaining());
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        let { days, hours, minutes, seconds } = prev;
+        if (seconds > 0) {
+          seconds--;
+        } else {
+          seconds = 59;
+          if (minutes > 0) {
+            minutes--;
+          } else {
+            minutes = 59;
+            if (hours > 0) {
+              hours--;
+            } else {
+              hours = 23;
+              if (days > 0) {
+                days--;
+              } else {
+                clearInterval(timer);
+                return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+              }
+            }
+          }
+        }
+        return { days, hours, minutes, seconds };
+      });
     }, 1000);
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, []);
 
-  function getTimeRemaining() {
-    const targetDate = new Date("2025-12-31T23:59:59");
-    const now = new Date();
-    const difference = targetDate - now;
-    const totalSeconds = Math.max(0, Math.floor(difference / 1000));
-    const days = Math.floor(totalSeconds / (3600 * 24));
-    const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    return { days, hours, minutes, seconds };
-  }
-
   return (
-    <section className="relative w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white pt-16 pb-32 px-8 lg:px-24 overflow-hidden ">
-      {/* Content */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center z-10 relative">
-        {/* Left Column */}
-        <div>
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6">
+    <div className="max-w-2xl w-full mx-auto bg-white p-8 rounded-3xl shadow-2xl text-center">
+      <h1 className="text-3xl sm:text-4xl font-bold mb-8">
+        1st stage ends in:
+      </h1>
+      <div className="bg-[#7857ff] text-white rounded-full p-4 md:p-6 mb-8 w-128">
+        <div className="flex justify-around items-center">
+          <div className="flex flex-col items-center">
+            <span className="text-4xl sm:text-5xl font-bold">
+              {String(countdown.days).padStart(2, "0")}
+            </span>
+            <span className="text-sm sm:text-base opacity-75">Days</span>
+          </div>
+          <div className="h-16 w-px bg-white opacity-20 hidden sm:block"></div>
+          <div className="flex flex-col items-center">
+            <span className="text-4xl sm:text-5xl font-bold">
+              {String(countdown.hours).padStart(2, "0")}
+            </span>
+            <span className="text-sm sm:text-base opacity-75">Hours</span>
+          </div>
+          <div className="h-16 w-px bg-white opacity-20"></div>
+          <div className="flex flex-col items-center">
+            <span className="text-4xl sm:text-5xl font-bold">
+              {String(countdown.minutes).padStart(2, "0")}
+            </span>
+            <span className="text-sm sm:text-base opacity-75">Minutes</span>
+          </div>
+          <div className="h-16 w-px bg-white opacity-20"></div>
+          <div className="flex flex-col items-center">
+            <span className="text-4xl sm:text-5xl font-bold">
+              {String(countdown.seconds).padStart(2, "0")}
+            </span>
+            <span className="text-sm sm:text-base opacity-75">Seconds</span>
+          </div>
+        </div>
+      </div>
+      <button className="bg-gradient-to-r from-[#ff4081] to-[#ff6384] text-white text-lg sm:text-xl font-bold py-3 sm:py-4 px-12 rounded-full shadow-lg hover:from-[#ff6384] hover:to-[#ff4081] transition-all duration-300">
+        Buy Token Now
+      </button>
+      <div className="flex justify-center space-x-6 mt-8">
+        <img
+          src="https://placehold.co/60x40/fff/000?text=VISA"
+          alt="Visa"
+          className="w-16 h-10 rounded-lg shadow-md"
+        />
+        <img
+          src="https://placehold.co/60x40/fff/000?text=MASTERCARD"
+          alt="MasterCard"
+          className="w-16 h-10 rounded-lg shadow-md"
+        />
+        <img
+          src="https://placehold.co/60x40/fff/000?text=BTC"
+          alt="Bitcoin"
+          className="w-16 h-10 rounded-lg shadow-md"
+        />
+        <img
+          src="https://placehold.co/60x40/fff/000?text=ETH"
+          alt="Ethereum"
+          className="w-16 h-10 rounded-lg shadow-md"
+        />
+      </div>
+    </div>
+  );
+};
+
+const Header = () => {
+  return (
+    <header
+      className="relative px-4 md:px-12 flex items-center "
+      style={{
+        backgroundImage:
+          "url('https://bestwpware.com/html/tf/cryptohub/assets/img/hero.png')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100% 100%",
+        minHeight: "900px",
+      }}
+    >
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-6 ml-8 mr-8 items-center w-full">
+        {/* Left Side */}
+        <div className="text-white text-center md:text-left px-8 mb-10 ">
+          <h1 className="text-6xl md:text-5xl font-bold mb-4">
             The fastest way to follow markets.
           </h1>
-          <p className="mb-6 text-lg text-white/90">
+          <p className="text-lg leading-relaxed max-w-lg mx-auto md:mx-0">
             We offers users a fully operational long-term rental platform. It
             plans to leverages blockchain technology to ensure seamless rental
             experience.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <button className="bg-[rgba(255,0,102,0.85)] text-white font-semibold px-6 py-3 rounded-full transition duration-300 border-2 border-transparent hover:bg-transparent hover:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+          <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-6">
+            <button className="bg-[rgba(255,0,102,0.85)] text-white font-semibold px-6 py-3 rounded-full transition duration-300 border-2 border-transparent hover:bg-transparent hover:border-white">
               Whitepaper
             </button>
-            <button className="bg-[#7868e6] text-white border border-white px-6 py-3 rounded-full hover:bg-white hover:text-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+            <button className="bg-[#7868e6] text-white border border-white px-6 py-3 rounded-full hover:bg-white hover:text-blue-600 transition duration-300">
               Learn More
             </button>
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg text-center text-black">
-          <h2 className="text-2xl font-semibold mb-4">1st Stage Ends In:</h2>
-          <div className="flex justify-center gap-4 mb-6">
-            {["days", "hours", "minutes", "seconds"].map((unit, idx) => (
-              <div
-                key={idx}
-                className="bg-gray-100 rounded-xl p-4 w-20 text-center"
-              >
-                <div className="text-2xl font-bold">
-                  {String(timeLeft[unit]).padStart(2, "0")}
-                </div>
-                <div className="text-xs uppercase mt-1">{unit}</div>
-              </div>
-            ))}
-          </div>
-          <button className="bg-[rgba(255,0,102,0.85)] text-white px-6 py-4 rounded-full hover:bg-[rgba(178, 23, 209, 0.7)] transition focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 font-semibold">
-            Buy Token Now
-          </button>
-          <div className="flex justify-center items-center gap-4 text-2xl mt-4">
-            <span>💳</span>
-            <span>₿</span>
-            <span>💰</span>
-            <span>🏦</span>
-          </div>
-        </div>
+        {/* Right Side - Replaced with CountdownCard */}
+        <CountdownCard />
       </div>
-
-      {/* Wave SVG */}
-      <div className="absolute bottom-0 left-0 w-full">
-        <svg
-          viewBox="0 0 1440 320"
-          className="w-full h-32"
-          preserveAspectRatio="none"
-        >
-          <path
-            fill="#ffffff"
-            fillOpacity="1"
-            d="M0,192L48,170.7C96,149,192,107,288,101.3C384,96,480,128,576,138.7C672,149,768,139,864,128C960,117,1056,107,1152,122.7C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
-      </div>
-    </section>
+    </header>
   );
 };
 
