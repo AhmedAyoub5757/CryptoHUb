@@ -54,7 +54,7 @@ const App = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8 font-['Inter']">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-8 font-['Inter']">
       <div className="w-full max-w-2xl">
         {/* Header Section */}
         <div className="text-center mb-10">

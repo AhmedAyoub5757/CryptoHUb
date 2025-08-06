@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaCalendarAlt, FaUser } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const blogData = [
   {
@@ -23,6 +25,13 @@ const blogData = [
 ];
 
 const BlogSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
+
   return (
     <section className="px-4 md:px-20 py-16 bg-white">
       {/* Heading */}
@@ -43,6 +52,8 @@ const BlogSection = () => {
           <div
             key={index}
             className="shadow-md rounded-lg overflow-hidden bg-white hover:shadow-xl transition-shadow duration-300"
+            data-aos="fade-up"
+            data-aos-delay={index * 150} // stagger animation
           >
             <img
               src={blog.img}
@@ -60,7 +71,7 @@ const BlogSection = () => {
                   <span>{blog.author}</span>
                 </div>
               </div>
-              <h3 className="text-lg font-semibold text-gray-800 hover:text-blue-600 cursor-pointer transition-colors duration-200">
+              <h3 className="text-lg font-bold text-gray-800 hover:text-purple-600 cursor-pointer transition-colors duration-200">
                 {blog.title}
               </h3>
             </div>

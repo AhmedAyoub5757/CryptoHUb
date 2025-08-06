@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Mock data for the cryptocurrency table. In a real application, this would be fetched from an API.
+// Updated mock data with mixed positive/negative trends
 const cryptoData = [
   {
     rank: 1,
@@ -13,7 +13,8 @@ const cryptoData = [
     volumeAlt: '₿ 8,989',
     change: '+14.02%',
     changeType: 'positive',
-    logo: 'https://placehold.co/40x40/FF9900/ffffff?text=B', // Placeholder image URL
+    sparkline: '0,15 10,5 20,10 30,0 40,8 50,2 60,12 70,6 80,10 90,4 100,15',
+    logo: 'https://widget.coinlib.io/static/img/coins/small/btc.png?25799',
   },
   {
     rank: 2,
@@ -26,7 +27,8 @@ const cryptoData = [
     volumeAlt: 'ETH 179K',
     change: '-5.25%',
     changeType: 'negative',
-    logo: 'https://placehold.co/40x40/62688F/ffffff?text=E',
+    sparkline: '0,10 10,12 20,15 30,8 40,6 50,10 60,5 70,3 80,6 90,2 100,0',
+    logo: 'https://widget.coinlib.io/static/img/coins/small/eth.png?25799',
   },
   {
     rank: 3,
@@ -35,11 +37,12 @@ const cryptoData = [
     price: '1.011',
     priceAlt: 'USDC 1,000',
     marketCap: '68.98 B',
-    volume: '2.32 B',
+    volume: '-1.12 B',
     volumeAlt: 'USDT 23.0 B',
-    change: '+0.45%',
-    changeType: 'positive',
-    logo: 'https://placehold.co/40x40/25966B/ffffff?text=T',
+    change: '-0.45%',
+    changeType: 'negative',
+    sparkline: '0,12 10,8 20,10 30,4 40,8 50,6 60,10 70,8 80,5 90,7 100,4',
+    logo: 'https://widget.coinlib.io/static/img/coins/small/eth.png?25799',
   },
   {
     rank: 4,
@@ -52,7 +55,8 @@ const cryptoData = [
     volumeAlt: 'BNB 92K',
     change: '+6.27%',
     changeType: 'positive',
-    logo: 'https://placehold.co/40x40/F3BA2F/ffffff?text=B',
+    sparkline: '0,5 10,10 20,6 30,8 40,4 50,12 60,10 70,14 80,12 90,15 100,18',
+    logo: 'https://widget.coinlib.io/static/img/coins/small/eth.png?25799',
   },
   {
     rank: 5,
@@ -64,7 +68,8 @@ const cryptoData = [
     volumeAlt: 'USDC 127.91 M',
     change: '+0.53%',
     changeType: 'positive',
-    logo: 'https://placehold.co/40x40/2775CA/ffffff?text=U',
+    sparkline: '0,8 10,6 20,10 30,12 40,8 50,14 60,10 70,6 80,10 90,8 100,12',
+    logo: 'https://widget.coinlib.io/static/img/coins/small/bnb.png?25799',
   },
   {
     rank: 6,
@@ -73,49 +78,50 @@ const cryptoData = [
     price: '3.039',
     priceAlt: 'USDC 3.032',
     marketCap: '141.55 B',
-    volume: '107.26 M',
+    volume: '-35.30 M',
     volumeAlt: 'XRP 35.30 M',
-    change: '+25.49%',
-    changeType: 'positive',
-    logo: 'https://placehold.co/40x40/23292F/ffffff?text=X',
+    change: '-25.49%',
+    changeType: 'negative',
+    sparkline: '0,14 10,10 20,8 30,12 40,10 50,8 60,4 70,2 80,6 90,4 100,0',
+    logo: 'https://widget.coinlib.io/static/img/coins/small/xrp.png?25799',
   },
 ];
 
-// Helper component for the sparkline chart. This uses a simple SVG for demonstration.
-const Sparkline = ({ data }) => {
-  // Mock data for the sparkline chart
-  const points = '0,15 10,5 20,10 30,0 40,8 50,2 60,12 70,6 80,10 90,4 100,15';
+// Sparkline chart component
+const Sparkline = ({ data, changeType }) => {
+  const strokeColor = changeType === 'positive' ? '#16a34a' : '#dc2626';
   return (
-    <svg viewBox="0 0 100 20" className="w-20 h-10">
+    <svg
+      viewBox="0 0 100 20"
+      className="w-20 h-10 cursor-pointer"
+    >
       <polyline
         fill="none"
-        stroke="#16a34a" // Green for positive change, can be dynamic
+        stroke={strokeColor}
         strokeWidth="2"
-        points={points}
+        points={data}
       />
     </svg>
   );
 };
 
-// Main App component
 const App = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedPeriod, setSelectedPeriod] = useState('Last 24H');
-
   const periods = ['Last 1h', 'Last 24H', 'Last 7d', 'Last 30d'];
 
   return (
-    <div className="min-h-screen bg-white font-sans p-1 md:p-2 flex items-center justify-center">
-      <div className="w-full max-w-4xl bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden">
+    <div className="bg-white font-sans p-1 md:p-2 flex items-center justify-center mt-[-20px]">
+      <div className="w-full max-w-6xl bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden">
+        
         {/* Table Header */}
-        <div className="grid grid-cols-7 gap-2 items-center p-2 text-xs font-bold uppercase tracking-wider text-white bg-[#606060] border-b border-gray-400">
+        <div className="grid grid-cols-7 gap-2 items-center p-4 text-xs font-bold uppercase tracking-wider text-white bg-gray-600">
           <div className="col-span-1">Rank</div>
           <div className="col-span-2">Name</div>
           <div className="col-span-1 text-right">Price</div>
           <div className="col-span-1 text-right">Market Cap</div>
           <div className="col-span-1 text-right">Volume</div>
-          
-          {/* Dropdown for Last 24h */}
+
           <div className="relative col-span-1 flex justify-end">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -157,48 +163,34 @@ const App = () => {
 
               {/* Name */}
               <div className="col-span-2 flex items-center">
-                <img
-                  src={crypto.logo}
-                  alt={`${crypto.name} logo`}
-                  className="w-6 h-6 rounded-full mr-2 border-2 border-gray-200"
-                />
-                <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-[#2e7ad0]">{crypto.name}</span>
-                  <span className="text-xs text-gray-500">[{crypto.symbol}]</span>
-                </div>
+                <img src={crypto.logo} alt={`${crypto.name} logo`} className="w-6 h-6 rounded-full mr-2 border-2 border-gray-200" />
+                <span className="text-sm font-semibold text-[#2e7ad0] mr-1">{crypto.name}</span>
+                <span className="text-xs text-gray-500">[{crypto.symbol}]</span>
               </div>
 
               {/* Price */}
               <div className="col-span-1 flex flex-col items-end">
-                <span className="text-sm font-semibold">${crypto.price}</span>
-                {crypto.priceAlt && (
-                  <span className="text-xs text-gray-400">{crypto.priceAlt}</span>
-                )}
+                <span className="text-sm text-gray-800 font-normal">${crypto.price}</span>
+                {crypto.priceAlt && <span className="text-xs text-gray-400">{crypto.priceAlt}</span>}
               </div>
 
               {/* Market Cap */}
-              <div className="col-span-1 text-sm text-right font-medium text-gray-700">
+              <div className="col-span-1 text-sm text-right text-gray-400">
                 ${crypto.marketCap}
               </div>
 
               {/* Volume */}
-              <div className="col-span-1 flex flex-col items-end">
-                <span className="text-sm font-medium">${crypto.volume}</span>
-                {crypto.volumeAlt && (
-                  <span className="text-xs text-gray-400">{crypto.volumeAlt}</span>
-                )}
+              <div className={`col-span-1 flex flex-col items-end ${crypto.volume.startsWith('-') ? 'text-red-500' : 'text-gray-400'}`}>
+                <span className="text-sm">{crypto.volume}</span>
+                {crypto.volumeAlt && <span className="text-xs text-gray-400">{crypto.volumeAlt}</span>}
               </div>
 
-              {/* Last 24h */}
+              {/* Change & Sparkline */}
               <div className="col-span-1 flex items-center justify-end">
-                <span
-                  className={`text-sm font-semibold mr-2 ${
-                    crypto.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-                  }`}
-                >
+                <span className={`text-sm font-semibold mr-2 ${crypto.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}>
                   {crypto.change}
                 </span>
-                <Sparkline />
+                <Sparkline data={crypto.sparkline} changeType={crypto.changeType} />
               </div>
             </div>
           ))}

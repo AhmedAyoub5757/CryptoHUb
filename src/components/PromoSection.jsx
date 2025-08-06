@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaPlay } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const PromoSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800, // Animation speed
+      once: true, // Only animate once when scrolled into view
+    });
+  }, []);
+
   return (
     <section className="w-full bg-white py-20 px-6 lg:px-24" id="promo">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Left Column */}
-        <div>
+        {/* Left Column with fade-in-up animation */}
+        <div data-aos="fade-up">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6 leading-snug">
             Display trends of cryptocurrency and other rapidly changing rates and numbers with Cryptohub template.
           </h2>
@@ -25,7 +34,6 @@ const PromoSection = () => {
             <FaPlay className="text-white" />
             Watch Video
           </button>
-          
         </div>
 
         {/* Right Column */}
