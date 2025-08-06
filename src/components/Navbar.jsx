@@ -27,7 +27,7 @@ const Navbar = () => {
         <ul className="hidden md:flex items-center gap-6 relative">
           {/* Dropdown */}
           <li className="relative group">
-            <span className="cursor-pointer select-none">Home ▼</span>
+            <span className="cursor-pointer select-none"><a href="#a">Home ▼</a></span>
             <ul className="absolute top-full left-0 mt-2 hidden group-hover:block bg-purple-200 text-black rounded shadow-md w-36 z-50">
               <li className="px-4 py-2 cursor-pointer text-white bg-[#a586dd]">Style 1</li>
               <li className="px-4 py-2 cursor-pointer text-white bg-[#a586dd]">Style 2</li>

@@ -85,6 +85,7 @@ const Header = () => {
         minHeight: "900px",
         backgroundColor: "white",
       }}
+      id="a"
     >
       {/* Centered container with equal side margins */}
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 grid md:grid-cols-2 gap-4 items-center w-full min-h-[900px]">
