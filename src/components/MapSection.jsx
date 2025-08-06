@@ -17,29 +17,29 @@ const MapSection = () => {
       {/* Overlapping Cards */}
       <div className="absolute inset-x-0 -bottom-20 flex justify-center gap-6 flex-wrap px-4">
         {/* Card 1 */}
-        <div className="bg-white shadow-lg rounded-xl p-6 w-72 text-center relative z-10">
-          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white rounded-full p-3 shadow-md">
-            <FaPhoneAlt size={20} />
+        <div className="bg-white shadow-lg shadow-purple-400/30 rounded-xl p-8 w-80 text-center relative z-10">
+          <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 bg-purple-500 text-white rounded-full p-5 shadow-lg shadow-purple-400/30">
+            <FaPhoneAlt size={24} />
           </div>
-          <h4 className="mt-6 font-semibold text-lg">Phone</h4>
+          <h4 className="mt-8 font-semibold text-lg">Phone</h4>
           <p className="text-gray-600 mt-2">+1 (234) 567-890</p>
         </div>
 
         {/* Card 2 */}
-        <div className="bg-white shadow-lg rounded-xl p-6 w-72 text-center relative z-10">
-          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white rounded-full p-3 shadow-md">
-            <FaEnvelope size={20} />
+        <div className="bg-white shadow-lg shadow-purple-400/30 rounded-xl p-8 w-80 text-center relative z-10">
+          <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 bg-purple-500 text-white rounded-full p-5 shadow-lg shadow-purple-400/30">
+            <FaEnvelope size={24} />
           </div>
-          <h4 className="mt-6 font-semibold text-lg">Email</h4>
+          <h4 className="mt-8 font-semibold text-lg">Email</h4>
           <p className="text-gray-600 mt-2">support@cryptohub.com</p>
         </div>
 
         {/* Card 3 */}
-        <div className="bg-white shadow-lg rounded-xl p-6 w-72 text-center relative z-10">
-          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white rounded-full p-3 shadow-md">
-            <FaMapMarkerAlt size={20} />
+        <div className="bg-white shadow-lg shadow-purple-400/30 rounded-xl p-8 w-80 text-center relative z-10">
+          <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 bg-purple-500 text-white rounded-full p-5 shadow-lg shadow-purple-400/30">
+            <FaMapMarkerAlt size={24} />
           </div>
-          <h4 className="mt-6 font-semibold text-lg">Address</h4>
+          <h4 className="mt-8 font-semibold text-lg">Address</h4>
           <p className="text-gray-600 mt-2">123 Crypto Street, Blockchain City</p>
         </div>
       </div>

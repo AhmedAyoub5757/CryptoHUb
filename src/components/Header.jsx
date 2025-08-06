@@ -40,65 +40,35 @@ const CountdownCard = () => {
   }, []);
 
   return (
-    <div className="max-w-2xl w-full mx-auto bg-white p-8 rounded-3xl shadow-2xl text-center">
-      <h1 className="text-3xl sm:text-4xl font-bold mb-8">
-        1st stage ends in:
-      </h1>
-      <div className="bg-[#7857ff] text-white rounded-full p-4 md:p-6 mb-8 w-128">
+    <div className="w-full max-w-md md:max-w-sm mx-auto bg-white p-2 md:p-6 rounded-2xl shadow-2xl text-center min-h-[380px] flex flex-col justify-between">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-2">1st stage ends in:</h1>
+      <div className="bg-[#7857ff] text-white rounded-full p-2 md:p-4 mb-1">
         <div className="flex justify-around items-center">
-          <div className="flex flex-col items-center">
-            <span className="text-4xl sm:text-5xl font-bold">
-              {String(countdown.days).padStart(2, "0")}
-            </span>
-            <span className="text-sm sm:text-base opacity-75">Days</span>
-          </div>
-          <div className="h-16 w-px bg-white opacity-20 hidden sm:block"></div>
-          <div className="flex flex-col items-center">
-            <span className="text-4xl sm:text-5xl font-bold">
-              {String(countdown.hours).padStart(2, "0")}
-            </span>
-            <span className="text-sm sm:text-base opacity-75">Hours</span>
-          </div>
-          <div className="h-16 w-px bg-white opacity-20"></div>
-          <div className="flex flex-col items-center">
-            <span className="text-4xl sm:text-5xl font-bold">
-              {String(countdown.minutes).padStart(2, "0")}
-            </span>
-            <span className="text-sm sm:text-base opacity-75">Minutes</span>
-          </div>
-          <div className="h-16 w-px bg-white opacity-20"></div>
-          <div className="flex flex-col items-center">
-            <span className="text-4xl sm:text-5xl font-bold">
-              {String(countdown.seconds).padStart(2, "0")}
-            </span>
-            <span className="text-sm sm:text-base opacity-75">Seconds</span>
-          </div>
+          {["days", "hours", "minutes", "seconds"].map((unit, idx) => (
+            <React.Fragment key={unit}>
+              <div className="flex flex-col items-center">
+                <span className="text-3xl sm:text-4xl font-bold">
+                  {String(countdown[unit]).padStart(2, "0")}
+                </span>
+                <span className="text-xs sm:text-sm opacity-75">
+                  {unit.charAt(0).toUpperCase() + unit.slice(1)}
+                </span>
+              </div>
+              {idx < 3 && (
+                <div className="h-14 w-px bg-white opacity-20 hidden sm:block"></div>
+              )}
+            </React.Fragment>
+          ))}
         </div>
       </div>
-      <button className="bg-gradient-to-r from-[#ff4081] to-[#ff6384] text-white text-lg sm:text-xl font-bold py-3 sm:py-4 px-12 rounded-full shadow-lg hover:from-[#ff6384] hover:to-[#ff4081] transition-all duration-300">
+      <button className="bg-gradient-to-r from-[#ff4081] to-[#ff6384] text-white text-base sm:text-lg font-bold py-2 sm:py-3 px-8 rounded-full shadow-lg hover:from-[#ff6384] hover:to-[#ff4081] transition-all duration-300 mb-2">
         Buy Token Now
       </button>
-      <div className="flex justify-center space-x-6 mt-8">
-        <img
-          src="https://placehold.co/60x40/fff/000?text=VISA"
-          alt="Visa"
-          className="w-16 h-10 rounded-lg shadow-md"
-        />
-        <img
-          src="https://placehold.co/60x40/fff/000?text=MASTERCARD"
-          alt="MasterCard"
-          className="w-16 h-10 rounded-lg shadow-md"
-        />
-        <img
-          src="https://placehold.co/60x40/fff/000?text=BTC"
-          alt="Bitcoin"
-          className="w-16 h-10 rounded-lg shadow-md"
-        />
-        <img
-          src="https://placehold.co/60x40/fff/000?text=ETH"
-          alt="Ethereum"
-          className="w-16 h-10 rounded-lg shadow-md"
-        />
+      <div className="flex justify-center space-x-4 sm:space-x-6 flex-wrap gap-3">
+        <img src="https://bestwpware.com/html/tf/cryptohub/assets/img/visa.png" alt="Visa" className="w-[40px] h-8 rounded-lg shadow-md cursor-pointer" />
+        <img src="https://bestwpware.com/html/tf/cryptohub/assets/img/mastercard.png" alt="MasterCard" className="w-[40px] h-8 rounded-lg shadow-md cursor-pointer" />
+        <img src="https://bestwpware.com/html/tf/cryptohub/assets/img/bitcoin.png" alt="Bitcoin" className="w-[40px] h-8 rounded-lg shadow-md cursor-pointer" />
+        <img src="https://bestwpware.com/html/tf/cryptohub/assets/img/ethereum.png" alt="Ethereum" className="w-[40px] h-8 rounded-lg shadow-md cursor-pointer" />
       </div>
     </div>
   );
@@ -107,28 +77,36 @@ const CountdownCard = () => {
 const Header = () => {
   return (
     <header
-      className="relative px-4 md:px-12 flex items-center "
+      className="relative flex items-center"
       style={{
-        backgroundImage:
-          "url('https://bestwpware.com/html/tf/cryptohub/assets/img/hero.png')",
+        backgroundImage: "url('https://bestwpware.com/html/tf/cryptohub/assets/img/hero.png')",
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% 100%",
         minHeight: "900px",
-        backgroundColor: "white"
+        backgroundColor: "white",
       }}
     >
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-6 ml-8 mr-8 items-center w-full">
+      {/* Centered container with equal side margins */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 grid md:grid-cols-2 gap-4 items-center w-full min-h-[900px]">
         {/* Left Side */}
-        <div className="text-white text-center md:text-left px-8 mb-10 ">
-          <h1 className="text-6xl md:text-5xl font-bold mb-4">
+        <div className="text-white text-center md:text-left flex flex-col justify-center">
+          <h1
+            className="font-bold"
+            style={{
+              color: "#fff",
+              fontSize: "56px",
+              fontWeight: 700,
+              lineHeight: "62px",
+            }}
+          >
             The fastest way to follow markets.
           </h1>
-          <p className="text-lg leading-relaxed max-w-lg mx-auto md:mx-0">
+          <p className="text-lg leading-relaxed max-w-lg mx-auto md:mx-0 mt-1">
             We offers users a fully operational long-term rental platform. It
             plans to leverages blockchain technology to ensure seamless rental
             experience.
           </p>
-          <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-6">
+          <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-3">
             <button className="bg-[rgba(255,0,102,0.85)] text-white font-semibold px-6 py-3 rounded-full transition duration-300 border-2 border-transparent hover:bg-transparent hover:border-white">
               Whitepaper
             </button>
@@ -138,8 +116,10 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Right Side - Replaced with CountdownCard */}
-        <CountdownCard />
+        {/* Right Side */}
+        <div className="flex justify-center md:justify-end items-center">
+          <CountdownCard />
+        </div>
       </div>
     </header>
   );

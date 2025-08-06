@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaFacebookF, FaTwitter, FaGooglePlusG } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const teamMembers = [
   {
@@ -25,8 +27,19 @@ const teamMembers = [
 ];
 
 const TeamSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
+
   return (
-    <section className="w-full py-20 px-4 md:px-16 bg-white" id="team">
+    <section
+      className="w-full py-20 px-4 md:px-16 bg-white"
+      id="team"
+      data-aos="fade-up"
+    >
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-800 mb-2">Meet the Experts</h2>
         <div className="w-24 h-1 bg-blue-600 mx-auto mb-4 rounded-full"></div>
@@ -40,13 +53,15 @@ const TeamSection = () => {
           <div
             key={index}
             className="w-full sm:w-1/2 lg:w-1/4 flex flex-col items-center p-4 group"
+            data-aos="fade-up"
+            data-aos-delay={index * 150} // staggered animation
           >
             <img
               src={member.img}
               alt={member.name}
               className="w-32 h-32 rounded-full object-cover mb-4"
             />
-            <h3 className="text-xl font-semibold -rotate-3 mb-1 group-hover:rotate-0 transition duration-300">
+            <h3 className="text-xl  -rotate-3 mb-1 group-hover:rotate-0 transition duration-300">
               {member.name}
             </h3>
             <p className="text-sm text-gray-600 mb-4">{member.title}</p>
@@ -56,7 +71,7 @@ const TeamSection = () => {
                 <a
                   key={i}
                   href="#"
-                  className="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"
+                  className="w-10 h-10  bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-blue-900 hover:text-white transition"
                 >
                   <Icon size={16} />
                 </a>
