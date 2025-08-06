@@ -58,7 +58,7 @@ const Timeline = ({ events }) => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.
       </p>
       {/* Vertical Timeline Line */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5" style={{ backgroundColor: customPurple }}></div>
+      <div className="absolute left-1/2 transform -translate-x-1/2 h-[1100px] w-0.5" style={{ backgroundColor: customPurple }}></div>
 
       {events.map((item) => (
         <div key={item.id} className="flex relative items-center mb-16">

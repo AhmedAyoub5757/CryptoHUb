@@ -32,12 +32,12 @@ const AppInstallSection = () => {
 
           {/* App buttons */}
           <div className="flex flex-wrap gap-4">
-            <button className="flex items-center gap-2 bg-[rgba(255,0,102,0.85)] text-white hover:bg-[rgba(255,0,102,0.7)]  px-5 py-3 rounded-full font-semibold hover:scale-105 transition">
+            <button className=" hover:scale-105 hover:bg-transparent hover:border-white border-2 border-transparent flex items-center gap-2 bg-[rgba(255,0,102,0.85)] text-white hover:bg-[rgba(255,0,102,0.7)]  px-5 py-3 rounded-full font-semibold hover:scale-105 transition">
               <FaApple className="text-xl" />
               App Store
             </button>
             <button className="flex items-center gap-2  bg-[#7868e6]
- text-white hover:bg-white px-5 py-3 rounded-full font-semibold hover:scale-105 transition">
+ text-white hover:bg-white px-5 py-3 rounded-full font-semibold hover:scale-105 transition  hover:bg-white hover:text-black">
               <FaGooglePlay className="text-xl" />
               Google Play
             </button>

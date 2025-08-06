@@ -39,7 +39,7 @@ const TeamSection = () => {
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="w-full sm:w-1/2 lg:w-1/4 flex flex-col items-center bg-gray-100 p-4 group"
+            className="w-full sm:w-1/2 lg:w-1/4 flex flex-col items-center p-4 group"
           >
             <img
               src={member.img}

@@ -114,6 +114,7 @@ const Header = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% 100%",
         minHeight: "900px",
+        backgroundColor: "white"
       }}
     >
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-6 ml-8 mr-8 items-center w-full">

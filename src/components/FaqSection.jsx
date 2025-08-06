@@ -1,91 +1,120 @@
 import React, { useState } from 'react';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
-const tabs = ["Development", "Design", "Compatibility"];
-const faqData = [
-  {
-    question: "What is crypto current?",
-    answer:
-      "Cryptocurrency is a digital or virtual currency secured by cryptography. It uses blockchain technology to ensure transparency and immutability.",
-  },
-  {
-    question: "What are the best cryptocurrencies to buy?",
-    answer:
-      "Some of the most popular cryptocurrencies include Bitcoin, Ethereum, Binance Coin, and Solana. Always do your own research before investing.",
-  },
-  {
-    question: "How to buy cryptocurrency?",
-    answer:
-      "You can buy cryptocurrency through exchanges like Binance, Coinbase, and others using fiat or other digital assets.",
-  },
-  {
-    question: "What is the refund policy?",
-    answer:
-      "Refunds depend on the exchange platform. Most crypto transactions are irreversible, so always double-check before transferring.",
-  },
-];
+// The main App component that contains the entire UI
+const App = () => {
+  // State to manage the active tab. 'Development' is the default active tab.
+  const [activeTab, setActiveTab] = useState('Development');
 
-const FaqSection = () => {
-  const [activeTab, setActiveTab] = useState("Development");
-  const [openIndex, setOpenIndex] = useState(0);
+  // State to manage which FAQ item is currently open.
+  // Using a number to store the index of the open item, -1 means none are open.
+  const [openFaqIndex, setOpenFaqIndex] = useState(-1);
 
-  const toggleAccordion = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+  // Data for the FAQ questions and answers
+  const faqs = [
+    {
+      question: 'What is cryptocurrency?',
+      answer: 'Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever.'
+    },
+    {
+      question: 'What are the best cryptocurrency for buy?',
+      answer: 'Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever.'
+    },
+    {
+      question: 'How to buy cryptocurrency?',
+      answer: 'Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever.'
+    },
+    {
+      question: 'What is the refund policy?',
+      answer: 'Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever.'
+    },
+  ];
+
+  // Function to handle opening and closing FAQ items
+  const handleFaqToggle = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? -1 : index);
   };
 
+  // The ArrowDown icon from lucide-react, styled as an SVG
+  const ArrowDownIcon = ({ isOpen }) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+    >
+      <path d="M12 5v14" />
+      <path d="m19 12-7 7-7-7" />
+    </svg>
+  );
+
   return (
-    <section className="w-full px-4 md:px-20 py-16 bg-white" id='faq'>
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold text-gray-800">Frequently Asked Questions</h2>
-        <div className="w-24 h-1 bg-blue-600 mx-auto mt-2 mb-4 rounded-full"></div>
-        <p className="text-gray-500 max-w-2xl mx-auto">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-        <p className="text-gray-500 max-w-2xl mx-auto">
-          Suspendisse potenti. Curabitur eleifend, est a laoreet.
-        </p>
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8 font-['Inter']">
+      <div className="w-full max-w-2xl">
+        {/* Header Section */}
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-semibold mb-4 text-gray-800">Frequently Asked Questions</h1>
+          <p className="text-gray-500 max-w-md mx-auto">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
+          </p>
+        </div>
 
-      {/* Tabs */}
-      <div className="flex justify-center gap-4 mb-10">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200
-              ${activeTab === tab ? "bg-purple-100 text-purple-700" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
-
-      {/* Accordion */}
-      <div className="max-w-3xl mx-auto space-y-4">
-        {faqData.map((faq, index) => (
-          <div
-            key={index}
-            className="border border-gray-200 rounded-xl shadow-sm p-4"
-          >
+        {/* Tab Navigation Section */}
+        <div className="flex justify-center mb-12">
+          {['Development', 'Design', 'Compatibility'].map((tab) => (
             <button
-              className="w-full flex justify-between items-center text-left"
-              onClick={() => toggleAccordion(index)}
+              key={tab}
+              className={`
+                px-6 py-2 text-lg font-medium  transition-colors duration-200 ease-in-out
+                ${activeTab === tab
+                  ? 'bg-indigo-600 text-white shadow-lg'
+                  : 'bg-white text-gray-800 border border-gray-300 hover:bg-gray-50'
+                }
+                ${tab === 'Development' ? 'mr-2' : ''}
+                ${tab === 'Design' ? 'mx-2' : ''}
+                ${tab === 'Compatibility' ? 'ml-2' : ''}
+              `}
+              onClick={() => setActiveTab(tab)}
             >
-              <span className="text-base font-medium text-gray-800">{faq.question}</span>
-              <span className="text-gray-500">
-                {openIndex === index ? <FaChevronUp /> : <FaChevronDown />}
-              </span>
+              {tab}
             </button>
-            {openIndex === index && (
-              <div className="mt-3 text-gray-600 text-sm leading-relaxed">
-                {faq.answer}
+          ))}
+        </div>
+
+        {/* FAQ Accordion Section */}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-md cursor-pointer p-6 transition-all duration-300 ease-in-out"
+              onClick={() => handleFaqToggle(index)}
+            >
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-medium text-gray-800">{faq.question}</h3>
+                <ArrowDownIcon isOpen={openFaqIndex === index} />
               </div>
-            )}
-          </div>
-        ))}
+              <div
+                className={`
+                  overflow-hidden transition-all duration-300 ease-in-out
+                  ${openFaqIndex === index
+                    ? 'max-h-96 opacity-100 mt-4'
+                    : 'max-h-0 opacity-0'
+                  }
+                `}
+              >
+                <p className="text-gray-600">{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default FaqSection;
+export default App;

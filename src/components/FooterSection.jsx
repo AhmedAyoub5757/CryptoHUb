@@ -30,16 +30,16 @@ const FooterSection = () => {
 
       {/* Social Icons */}
       <div className="flex justify-center gap-6">
-        <a href="#" className="bg-gray-300 hover:bg-purple-400 text-gray-800 p-3 rounded-full transition">
+        <a href="#" className="bg-gray-200 hover:bg-blue-600 text-gray-800 p-3 transition">
           <FaFacebookF />
         </a>
-        <a href="#" className="bg-gray-300 hover:bg-purple-400 text-gray-800 p-3 rounded-full transition">
+        <a href="#" className="bg-gray-200 hover:bg-blue-400 text-gray-800 p-3 transition">
           <FaTwitter />
         </a>
-        <a href="#" className="bg-gray-300 hover:bg-purple-400 text-gray-800 p-3 rounded-full transition">
+        <a href="#" className="bg-gray-200 hover:bg-pink-600 text-gray-800 p-3 transition">
           <FaInstagram />
         </a>
-        <a href="#" className="bg-gray-300 hover:bg-purple-400 text-gray-800 p-3 rounded-full transition">
+        <a href="#" className="bg-gray-200 hover:bg-blue-600 text-gray-800 p-3 transition">
           <FaLinkedinIn />
         </a>
       </div>
