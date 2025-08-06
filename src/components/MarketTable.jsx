@@ -105,7 +105,7 @@ const App = () => {
   const periods = ['Last 1h', 'Last 24H', 'Last 7d', 'Last 30d'];
 
   return (
-    <div className="min-h-screen bg-gray-100 font-sans p-1 md:p-2 flex items-center justify-center">
+    <div className="min-h-screen bg-white font-sans p-1 md:p-2 flex items-center justify-center">
       <div className="w-full max-w-4xl bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden">
         {/* Table Header */}
         <div className="grid grid-cols-7 gap-2 items-center p-2 text-xs font-bold uppercase tracking-wider text-white bg-[#606060] border-b border-gray-400">

@@ -20,10 +20,10 @@ const cards = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="w-full bg-gray-50 py-20 px-6 lg:px-24 text-center">
+    <section className="w-full bg-white py-20 px-6 lg:px-24 text-center">
       <div className="max-w-3xl mx-auto mb-12">
         <h2 className="text-4xl font-bold text-gray-800 mb-4">
-          Why <span className="underline decoration-blue-500">choose</span> us
+          Why <span className="underline decoration-blue-400 ">choose</span> us
         </h2>
         <p className="text-gray-600">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum.
