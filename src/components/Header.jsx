@@ -102,7 +102,7 @@ const Header = () => {
           >
             The fastest way to follow markets.
           </h1>
-          <p className="text-lg text-[16px] leading-relaxed max-w-lg mx-auto md:mx-0 mt-1">
+          <p className="mb-4 mt-4 text-[16px] leading-relaxed max-w-lg mx-auto md:mx-0 mt-1">
             We offers users a fully operational long-term rental platform. It
             plans to leverages blockchain technology to ensure seamless rental
             experience.
