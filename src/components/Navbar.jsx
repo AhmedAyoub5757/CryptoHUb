@@ -21,7 +21,7 @@ const Navbar = () => {
       {/* Centered container with max-width */}
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 flex items-center justify-between">
         {/* Left side */}
-        <div className="text-2xl font-bold cursor-pointer">CryptoHub</div>
+        <div className="text-3xl font-bold cursor-pointer">CryptoHub</div>
 
         {/* Right side */}
         <ul className="hidden md:flex items-center gap-6 relative">
